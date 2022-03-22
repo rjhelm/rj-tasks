@@ -12,6 +12,7 @@ const auth = async (req, res, next) => {
         req.token = token; // ensure token currently used is main token for session, this ensures that user is logged out only from this current sesssion and any other session isnt affected
         req.user = user; // adding a property to the request so that the next route handler can has access to the already-fetched user and not fetch it again
         next();
+        console.log(decoded);
     } catch (error) {
         res.status(401).send({ error: "Please authenticate." });
     }
