@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
-import NavTabs from '../../components/MUI/NavTabs';
+import { Navigate } from "react-router-dom";
+import NavTabs from '../Components/MUI/NavTabs';
 import { AuthContext } from "../context/AuthContext";
 
 export default class HomePage extends Component {
@@ -19,7 +19,7 @@ export default class HomePage extends Component {
                 {({ user }) => {
                     if (!user) {
                         if (this.state.redirect) {
-                            return <Redirect to="/login" />;
+                            return <Navigate to="/login" />;
                         }
                     }
                     return (

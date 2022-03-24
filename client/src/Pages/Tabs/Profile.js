@@ -2,11 +2,11 @@ import React from "react";
 import axios from "../../axios";
 import { Paper, Typography } from "@material-ui/core";
 
-import classes from "./Home.module.scss";
+import classes from "./Home.module.css";
 import { AuthContext } from "../../context/AuthContext";
 
-import UserInfo from "../../components/Modals/UserInfo";
-import UserImage from "../../components/Modals/UserImage";
+import UserInfo from "../../Components/Modals/UserInfo";
+import UserImage from "../../Components/Modals/UserImage";
 
 class PaperSheet extends React.Component {
     state = {

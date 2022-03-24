@@ -2,7 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import ErrorIcon from '@material-ui/icons/Error';
-import InfoIcon from '@material-ui/icons/Info';
+import  InfoIcon from '@material-ui/icons/Info';
 import green from '@material-ui/core/colors/green';
 import amber from '@material-ui/core/colors/amber';
 import Snackbar from '@material-ui/core/Snackbar';

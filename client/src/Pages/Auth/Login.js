@@ -10,9 +10,9 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from '@material-ui/core/Container';
 // ? ====================== ? //
-import { Redirect, Link } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
-import ErrorMsg from "../../components/MUI/ErrorMsg";
+import { Navigate, Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
+import ErrorMsg from "../../Components/MUI/ErrorMsg";
 
 
 const MadeByDev = () => {
@@ -64,7 +64,7 @@ export default function SignIn() {
                     logIn({ email, password });
                 };
                 if (user) {
-                    return <Redirect to="/" />;
+                    return <Navigate to="/" />;
                 }
                 return (
                     <Container component="main" maxWidth="xs">

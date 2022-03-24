@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "../../axios";
-import MaterialTable from 'material-table'
+import MaterialTable from "material-table";
+// import { TasksContext } from "../../context/TasksContext";
 
 class MaterialTableDemo extends React.Component {
     state = {
@@ -30,40 +31,51 @@ class MaterialTableDemo extends React.Component {
         tasks: [],
         token: null
     };
+
     componentDidMount() {
         const token = window.localStorage.getItem("token");
-        axios.get("/tasks", {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then((res) => {
-            console.log(res.data);
-            const tasks = res.data;
-            this.setState({ tasks, token });
-        }).catch((err) => {
-            console.log(err);
-        });
+        axios
+            .get("/tasks", {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            .then((res) => {
+                console.log(res.data);
+                const tasks = res.data;
+                this.setState({ tasks, token });
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     }
 
-    // * Add Task *
+    //! add Task
     addTask = ({ description, completed }) => {
         const { token } = this.state;
-        axios.post("/tasks", { description, completed }, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                "Content-Type": "application/json"
-            }
-        }).then((res) => {
-            const newTask = res.data;
-            const tasks = [...this.state.tasks];
-            tasks.push(newTask);
-            this.setState({ tasks });
-        }).catch((err) => {
-            console.log(err);
-        });
+        axios
+            .post(
+                "/tasks",
+                { description, completed },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json"
+                    }
+                }
+            )
+            .then((res) => {
+                const newTask = res.data;
+                const tasks = [...this.state.tasks];
+                tasks.push(newTask);
+                this.setState({ tasks });
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     };
 
-    // * Update Task *
+    //! update Task
     updateTask = ({ newData }) => {
         const { token } = this.state;
         const { description, completed, _id } = newData;
@@ -91,7 +103,7 @@ class MaterialTableDemo extends React.Component {
             });
     };
 
-    // * Delete Task *
+    //! delete Task
     deleteTask = ({ _id }) => {
         const { token } = this.state;
         axios
@@ -120,7 +132,7 @@ class MaterialTableDemo extends React.Component {
                 columns={this.state.columns}
                 data={this.state.tasks}
                 editable={{
-                    // * Add Task *
+                    //! add Task
                     onRowAdd: (newData) =>
                         new Promise((resolve) => {
                             setTimeout(() => {
@@ -132,7 +144,7 @@ class MaterialTableDemo extends React.Component {
                                 this.addTask({ description, completed });
                             }, 600);
                         }),
-                    // * Update Task *
+                    //! update Task
                     onRowUpdate: (newData, oldData) =>
                         new Promise((resolve) => {
                             setTimeout(() => {
@@ -143,7 +155,7 @@ class MaterialTableDemo extends React.Component {
                                 this.updateTask({ newData });
                             }, 600);
                         }),
-                    // * Delete Task *
+                    //! delete Task
                     onRowDelete: (oldData) =>
                         new Promise((resolve) => {
                             setTimeout(() => {

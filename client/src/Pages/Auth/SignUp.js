@@ -12,9 +12,9 @@ import {
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { makeStyles } from "@material-ui/core/styles";
 // ? ====================== ? //
-import { Redirect, Link } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
-import ErrorMsg from "../../components/MUI/ErrorMsg";
+import { Navigate, Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
+import ErrorMsg from "../../Components/MUI/ErrorMsg";
 
 const MadeByDev = () => {
     return (
@@ -67,7 +67,7 @@ export default function SignIn() {
                     signUp({ name, email, password });
                 };
                 if (registeredUser) {
-                    return <Redirect to="/login" />;
+                    return <Navigate to="/login" />;
                 }
                 return (
                     <Container component="main" maxWidth="xs">
